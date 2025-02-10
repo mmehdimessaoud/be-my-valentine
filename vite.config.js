@@ -3,13 +3,17 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: './',  // This ensures assets are referenced correctly
+  base: './',  // This is important for GitHub Pages
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
+    sourcemap: true,
     rollupOptions: {
       output: {
-        manualChunks: undefined
+        manualChunks: undefined,
+        entryFileNames: 'assets/[name].js',
+        chunkFileNames: 'assets/[name].js',
+        assetFileNames: 'assets/[name].[ext]'
       }
     }
   }
